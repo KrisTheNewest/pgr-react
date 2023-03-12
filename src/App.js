@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { BrowserRouter } from "react-router-dom";
+import React from 'react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
-import Calendar from "./pages/Calendar";
-import CharaGallery from "./pages/CharaGallery";
-import Landing from "./pages/Landing";
 import Layout from "./compos/Layout";
 
+import Calendar from "./pages/Calendar";
+import EntireContainer from "./pages/CharaGallery";
+import Landing from "./pages/Landing";
+import Notfound from './pages/NotFound';
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route index element={<CharaGallery />}></Route>
-					<Route path="calendar" element={<Calendar />}></Route>
-					<Route path="about" element={<Landing />}></Route>
+				<Route element={<Layout />}>
+					<Route path="/costumes/:chara?/:cost?" element={<EntireContainer />}></Route>
+					<Route path="/calendar" element={<Calendar />}></Route>
+					<Route path="/about" element={<Landing />}></Route>
+					<Route path="*" element={<Notfound />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

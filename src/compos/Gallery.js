@@ -1,38 +1,38 @@
 import React, {useEffect, memo} from "react";
-import { Link } from 'react-router-dom';
+import { Link, useParams  } from 'react-router-dom';
 // import classNames from 'classnames';
 
 import '../App.css';
 import SkinData from "../compos/SkinData";
 
-const compare = (prev, next) => prev.cost === next.cost && prev.payload?.frameName === next.payload?.frameName;
+// const compare = (prev, next) => prev.cost === next.cost && prev.payload?.frameName === next.payload?.frameName;
 
 function Gallery(props) {
 	// useEffect(() => {
 	// 	console.log("am i being gaslight from the Gallery")
 	// });
 	// console.log({props})
-	const { payload: currentChara, cost } = props;
+	const {cost} = useParams();
+	const { payload: currentChara,  } = props;
 
 	if (!currentChara) return ("please wait...");
 	let currentIndex = currentChara.costumes.findIndex(c => c._id === cost);
 	let {price, event} = currentChara.costumes[currentIndex];
 	// if len === 0 inactive both
-	// if currentIndex === first left false
-	// if currentIndex === 
+	console.time("array.at");
 	let active = currentChara.costumes.length > 1;
-	let bigger = currentIndex + 1; 
-	if (bigger > currentChara.costumes.length - 1) bigger = 0;
-	let smaller = currentIndex - 1;
-	if (smaller < 0) smaller = currentChara.costumes.length - 1;
-	// console.log("Gallery music!!!!!!!!");
+	let bigger = currentChara.costumes.at(currentIndex + 1) ?? currentChara.costumes.at(0);
+	// if (bigger > currentChara.costumes.length - 1) bigger = 0;
+	let smaller = currentChara.costumes.at(currentIndex - 1) ?? currentChara.costumes.at(-1);
+	// if (smaller < 0) smaller = currentChara.costumes.length - 1;currentIndex - 1;
+	console.timeEnd("array.at")
 	// const btnClasses = classNames("galleryBtn", active && "enabled");
 
 	return (
 		<main className="charaPreview">
 			<div className="charaImage">
 				{active ?
-					<Link to={`/costumes/${currentChara._id}/${currentChara.costumes[smaller]?._id}`}
+					<Link to={`/costumes/${currentChara._id}/${bigger?._id}`}
 						className="galleryBtn enabled"
 					>&lt;</Link>
 					: <div className="galleryBtn">&lt;</div>
@@ -43,7 +43,7 @@ function Gallery(props) {
 					alt=""
 				></img>
 								{active ?
-					<Link to={`/costumes/${currentChara._id}/${currentChara.costumes[bigger]?._id}`}
+					<Link to={`/costumes/${currentChara._id}/${smaller?._id}`}
 						className="galleryBtn enabled"
 					>&lt;</Link>
 					: <div className="galleryBtn">&lt;</div>
@@ -57,4 +57,4 @@ Gallery.whyDidYouRender = {
 	// logOnDifferentValues: true,
 	customName: 'Gallery'
 }
-export default memo(Gallery, compare);
+export default Gallery//, compare);

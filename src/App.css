@@ -1,9 +1,17 @@
+:root {
+  --dark-red: #b80e23;
+  --bleak-red: #b15a64;
+  --bg-gray: #242424;
+  --btn-gray: #36393f;
+  --main-gray: #1e1e1e;
+}
+
 .autoMargin {
   margin-left: auto;
   margin-right: auto;
 }
 body {
-  background-color: #242424;
+  background-color: var(--bg-gray);
   color: azure;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -20,45 +28,92 @@ body {
   height: 92vh;
   display: flex;
   flex-direction: column;
-  background-color: darkturquoise;
 }
 .charaPreview {
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
   "gallery gallery"
   "data data";
-  grid-template-columns: 
+  grid-template-columns:
   50% 50%
   50% 50%;
   grid-template-rows: 74vh 18vh;
-  background-color: midnightblue;
+  background-color:  var(--main-gray);
 }
 .navBar {
   display: flex;
   align-items: stretch;
   /* align-items: center; */
-  background-color: rgb(0, 255, 102);
-  color: black;
+  color:var(--dark-red);
   height: 8vh;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) calc(100% - 2px),
+    var(--dark-red) 2px
+  ),
+  linear-gradient(to right, #36393f, #242424);
 }
-.navBar > a {
-  padding-left: 15px;
-  padding-right: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .navBar > form > input {
-  width: 20vw;
+  width: calc(20vw - 8px);
   height: 100%;
+  background: linear-gradient(
+    180deg,
+    var(--btn-gray) calc(100% - 2px),
+    var(--dark-red) 2px
+  );
 }
-.prettyScroll {
-  overflow-x: hidden;
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: linen #1e1e1e;
+
+.show > li > a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.5s linear;
+  cursor: pointer;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
+
 .btnList {
+  all: unset;
+  cursor: pointer;
+  text-align: center;
+  background-color: var(--btn-gray);
+  height: 5vh;
+  width: 100%;
+  /* background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("./arrow.svg") !important; */
+  border-color: var(--dark-red);
+  border-width: 2px;
+  border-style: solid;
+  /* border-radius: 25%; */
+  /* margin-left: -6vh; 
+   left: -12px;
+  transition-timing-function: ease-out;
+  transition-property: all; 2s .5s; 
+  transition-duration: 0.5s;
+   */
+  
+  /* height: 5vh; */
+  /* flex-shrink: 0; */
+  
+  transition: background-color 0.5s linear;
+  /* width: 100%; */
+}
+
+
+.prettyScroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #b80e23 #1e1e1e;
+}
+.noScroll {
+  scrollbar-width: none;
+}
+/* .btnList {
   all: unset;
   height: 5vh;
   flex-shrink: 0;
@@ -66,16 +121,15 @@ body {
   text-align: center;
   transition: background-color 0.5s linear;
   width: 100%;
-}
-/* .charaList > button:hover {
-  background-color: hotpink;
 } */
+
 
 .skinData {
   grid-area: data;
   display: grid;
   grid-template-columns: 10% 45% 45%;
   grid-auto-rows: 100%;
+  background-color:  var(--bg-gray);
 }
 .priceData {
   /* grid-area: price; */
@@ -83,7 +137,7 @@ body {
 
   flex-direction: column;
 
-  background-color: rgb(255, 81, 101);
+
   /* overflow-y: scroll; */
   max-height: 100%;
 }
@@ -93,9 +147,8 @@ body {
 
   flex-direction: column;
 
-  background-color: rgb(255, 234, 0);
   /* overflow-y: scroll; */
-  color: black;
+  /* color: black; */
   max-height: 100%;
 }
 .comment {
@@ -124,12 +177,9 @@ body {
 .cats {
   margin-left: 10px;
 }
-a {
-  color: darkblue;
-}
+
 
 .eventList {
-  background-color: olivedrab;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -149,23 +199,23 @@ a {
   margin-left: 10px;
   margin-right: 10px;
 }
-.navBtnActive {
-  color: #ff0099;
-  font-weight: bold;
-}
+
 .hide {
   display: none;
 }
 .show {
   display: block;
-  background-color: indigo;
+  /* background-color: indigo; */
 }
 .charaListFlat {
   list-style: none;
   padding-left: 0;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
-.subListItem {
-  /* all: unset; */
+/* .subListItem {
+  all: unset;
   display: block;
   width: 100%;
   background-color: plum;
@@ -174,7 +224,7 @@ a {
   cursor: pointer;
   padding-top: 3px;
   padding-bottom: 3px;
-}
+} */
 .unselected {
   background-color: #ff0099;
 }
@@ -187,8 +237,10 @@ a {
 .subListItem:hover {
   background-color: rgb(223, 65, 223);
 }
-.subListItemSelected {
+.show > li > .active {
   background-color: navy;
+  color: aliceblue;
+  pointer-events: none;
 }
 .dataBtn {
   all: unset;
@@ -198,9 +250,7 @@ a {
   cursor: pointer;
   background-color:cadetblue;
 }
-.selectedData {
-  background-color: greenyellow;
-}
+
 .backBtn {
   all: unset;
   text-align: center;
@@ -208,30 +258,34 @@ a {
   height: 3vh;
   transition: background-color 0.5s linear;
   cursor: pointer;
-  border-color: rgb(0, 255, 102);
   border-width: 2px;
   border-style: solid;
 }
 .backBtn:hover {
-  background-color: rgb(0, 255, 102);
   color: black;
 }
 
 
 .galleryBtn {
-  all: unset;
+  /* all: unset; */
   height: 100%;
   width: 10%;
-  background-color: rgb(87, 87, 87);
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: not-allowed;
- 
+
 }
 .enabled:hover {
-  background-color: rebeccapurple;
+  color: #b80e23;
 }
 .enabled {
-  transition: background-color 0.5s linear;
-  background-color: blueviolet;
+  transition: color 0.5s linear;
+  color: #be5b66;
   cursor: pointer;
+  font-size: xx-large;
+}
+
+a {
+  text-decoration: none;
 }

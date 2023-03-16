@@ -1,20 +1,16 @@
 import React, { useState, memo, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, NavLink } from "react-router-dom";
 import classNames from 'classnames';
 import '../App.css';
 
 function List(props) {
 	const { chara, payload } = props;
-	// console.log(payload, Array.isArray(payload));
-	useEffect(()=> {
-		console.log("???")
-	})
-	// console.log("List music!!!!!!!!");
+
 	const [openedDropDown, openDD] = useState(chara);
 	if (payload.length === 0) return ("please wait...");
 
 	return (
-		<aside className="charaList prettyScroll">
+		<aside className="charaList noScroll">
 			<ul className='charaListFlat'>
 				{payload.map(_chara =>
 					<li key={_chara._id}>
@@ -24,9 +20,9 @@ function List(props) {
 						<ul className={`charaListFlat ${openedDropDown === _chara._id ? 'show' : 'hide'}`}>
 							{_chara.costumes.map(_costume => 
 								<li key={_costume._id}>
-									<Link to={`/costumes/${_chara._id}/${_costume._id}`} className={classNames(`subListItem`)} >
+									<NavLink to={`/costumes/${_chara._id}/${_costume._id}`} end>
 										{_costume.skinName}
-									</Link>
+									</NavLink>
 								</li>
 							)}
 						</ul>
@@ -42,6 +38,6 @@ List.whyDidYouRender = {
 }
 // function moviePropsAreEqual(prevProps, nextProps) {
 // 	console.log({prevProps, nextProps})
-// 	return false;
+// 	return false;classNames(`subListItem`)
 //  }
 export default List;

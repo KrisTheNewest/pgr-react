@@ -10,10 +10,11 @@ import Gallery from "../compos/Gallery"
 const compare = (prev, next) => prev.chara === next.chara;
 
 //TODO: move to gallery
-function DisplayContainer(props) {
-	const {cost} = useParams();
-	return  <Gallery cost={cost} payload={props.payload} ></Gallery>;
-}
+// function DisplayContainer(props) {
+	
+// 	console.log({cost})
+// 	return  <Gallery cost={cost} payload={props.payload} ></Gallery>;
+// }
 
 function EntireContainer() {
 	const {chara} = useParams();
@@ -29,14 +30,14 @@ const CharaGallery = memo((props) => {
 		.then(response => {
 			setAllCharas(response.data.characters);
 		});
-	}, []);
+	}, [chara]);
 
 	let tempChara = allCharas.find(c => c._id === chara);
 
 	return (
 		<div className='fullGallery'>
 			<List chara={chara} payload={allCharas}></List>
-			<DisplayContainer payload={tempChara} ></DisplayContainer>
+			<Gallery payload={tempChara} ></Gallery>
 		</div>
 	)
 

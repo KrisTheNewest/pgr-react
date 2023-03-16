@@ -1,10 +1,26 @@
 import React from 'react';
 import { NavLink, } from "react-router-dom";
+import styled from 'styled-components';
 // import classNames from 'classnames';
 
 import pgrIcon from '../icon.webp';
 import '../App.css';
 
+const PrettyNavLink = styled(NavLink)`
+padding-left: 15px;
+padding-right: 15px;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #b80e23;
+	&:hover {
+		background-color: #1e1e1e;
+	}
+	&.active {
+		
+		background-color: #1e1e1e;
+	}
+`;
 function NavBar() {
 	return (
 		<nav className="navBar">
@@ -13,26 +29,20 @@ function NavBar() {
 				<input>
 				</input>
 			</form>
-			<NavLink to="/costumes"
-					className={({ isActive }) =>
-					isActive ? "navBtnActive" : ""}>
+			<PrettyNavLink to="/costumes">
 						Gallery
-			</NavLink>
-			<NavLink to="/about"
-					className={({ isActive }) =>
-					isActive ? "navBtnActive" : ""}>
+			</PrettyNavLink>
+			<PrettyNavLink to="/about">
 						About/Legend
-			</NavLink>
-			<NavLink to="/calendar"
-					className={({ isActive }) =>
-					isActive ? "navBtnActive" : ""}>
+			</PrettyNavLink>
+			<PrettyNavLink to="/calendar">
 						Calendar
-			</NavLink>
+			</PrettyNavLink>
 		</nav>
 	)
 }
-// NavBar.whyDidYouRender = {
-// 	logOnDifferentValues: true,
-// 	customName: 'Nav'
-// }
+NavBar.whyDidYouRender = {
+	logOnDifferentValues: true,
+	customName: 'Nav'
+}
 export default NavBar;

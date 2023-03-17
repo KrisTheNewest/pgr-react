@@ -4,6 +4,7 @@
   --bg-gray: #242424;
   --btn-gray: #36393f;
   --main-gray: #1e1e1e;
+  --pain-gray: #212529;
 }
 
 .autoMargin {
@@ -72,6 +73,7 @@ body {
   cursor: pointer;
   padding-top: 3px;
   padding-bottom: 3px;
+  color: azure;
 }
 
 .btnList {
@@ -81,29 +83,15 @@ body {
   background-color: var(--btn-gray);
   height: 5vh;
   width: 100%;
-  /* background-size: 50%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url("./arrow.svg") !important; */
-  border-color: var(--dark-red);
-  border-width: 2px;
-  border-style: solid;
-  /* border-radius: 25%; */
-  /* margin-left: -6vh; 
-   left: -12px;
-  transition-timing-function: ease-out;
-  transition-property: all; 2s .5s; 
-  transition-duration: 0.5s;
-   */
-  
-  /* height: 5vh; */
-  /* flex-shrink: 0; */
-  
+  border-bottom: 2px solid var(--dark-red);  
   transition: background-color 0.5s linear;
-  /* width: 100%; */
 }
-
-
+/* .bottomBorder {
+  border-bottom: 2px solid var(--dark-red);
+} */
+th, td, .eventaData {
+  border-bottom: 2px solid var(--dark-red);
+}
 .prettyScroll {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -113,23 +101,13 @@ body {
 .noScroll {
   scrollbar-width: none;
 }
-/* .btnList {
-  all: unset;
-  height: 5vh;
-  flex-shrink: 0;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.5s linear;
-  width: 100%;
-} */
-
 
 .skinData {
   grid-area: data;
   display: grid;
   grid-template-columns: 10% 45% 45%;
   grid-auto-rows: 100%;
-  background-color:  var(--bg-gray);
+  background-color:  var(--pain-gray);
 }
 .priceData {
   /* grid-area: price; */
@@ -213,6 +191,7 @@ body {
   padding-top: 0;
   margin-top: 0;
   margin-bottom: 0;
+  height: 100%;
 }
 /* .subListItem {
   all: unset;
@@ -226,20 +205,20 @@ body {
   padding-bottom: 3px;
 } */
 .unselected {
-  background-color: #ff0099;
+  background-color: var(--pain-gray);
 }
 .selected {
-  background-color: indigo;
+  background-color: var(--main-gray);
+  color: var(--dark-red);
 }
 .unselected:hover {
-  background-color: rgb(178, 105, 231);
+  background-color: var(--dark-red);
 }
 .subListItem:hover {
-  background-color: rgb(223, 65, 223);
+  background-color: var(--bleak-red);
 }
 .show > li > .active {
-  background-color: navy;
-  color: aliceblue;
+  background-color: var(--bleak-red);
   pointer-events: none;
 }
 .dataBtn {
@@ -277,11 +256,11 @@ body {
 
 }
 .enabled:hover {
-  color: #b80e23;
+  color: var(--dark-red);
 }
 .enabled {
   transition: color 0.5s linear;
-  color: #be5b66;
+  color: var(--bleak-red);
   cursor: pointer;
   font-size: xx-large;
 }

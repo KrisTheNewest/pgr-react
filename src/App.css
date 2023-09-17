@@ -294,6 +294,7 @@ a {
   position: fixed;
   top: 100px;
   right: 100px;
+  display: grid;
 }
 .history > a {
   color: azure;

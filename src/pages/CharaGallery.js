@@ -24,20 +24,32 @@ function EntireContainer() {
 const CharaGallery = memo((props) => {
 	const {chara} = props;
 	const [allCharas, setAllCharas] = useState([]);
+	const [loading, isLoading] = useState(true);
 	
 	useEffect(() => {
 		axios.get("http://localhost:5000/costumes")
 		.then(response => {
 			setAllCharas(response.data.characters);
+			// setTimeout(() => {
+				isLoading(false);
+			// }, 5000);
 		});
-	}, [chara]);
+	}, []);
 
 	let tempChara = allCharas.find(c => c._id === chara);
-
+	if (loading) return "pls wait";
 	return (
 		<div className='fullGallery'>
 			<List chara={chara} payload={allCharas}></List>
-			<Gallery payload={tempChara} ></Gallery>
+			
+			{tempChara && <Gallery payload={tempChara} ></Gallery>}
+			{/* {tempChara ?
+					<Link to={`/costumes/${currentChara._id}/${bigger?._id}`}
+						className="galleryBtn enabled"
+					>&lt;
+					</Link>
+					: <div className="galleryBtn">&lt;</div>
+				} */}
 		</div>
 	)
 

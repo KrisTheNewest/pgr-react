@@ -1,5 +1,5 @@
 import React, { useEffect, memo } from "react";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 // import classNames from 'classnames';
 
 import '../App.css';
@@ -8,23 +8,48 @@ import SkinData from "../compos/SkinData";
 // const compare = (prev, next) => prev.cost === next.cost && prev.payload?.frameName === next.payload?.frameName;
 
 function Gallery(props) {
-	// useEffect(() => {
-	// 	console.log("am i being gaslight from the Gallery")
-	// });
-	// console.log({props})
+
 	const { cost } = useParams();
 	const { payload: currentChara, } = props;
+	const allCostumes = currentChara.costumes;
+	
+	const currentIndex = allCostumes.findIndex(c => c._id === cost) ?? 0;
+	const currentSkin = allCostumes[currentIndex];
 
-	if (!currentChara) return ("please wait...");
-	let currentIndex = currentChara.costumes.findIndex(c => c._id === cost);
-	let { price, event } = currentChara.costumes[currentIndex];
-	// if len === 0 inactive both
+	useEffect(() => {
+		try {
+			// if (!currentChara) return;
+			let {charaName, _id: charaId } = currentChara;
+			let {_id: skinId , skinName} = currentSkin;
+			if (localStorage.getItem("visited")) {
+				let exists = JSON.parse(localStorage.getItem("visited"))
+					.filter(i => i.skinId !== skinId)
+					.concat({
+						charaId,
+						skinId,
+						skinName,
+						charaName
+					});
+				if (exists.length > 10) exists.shift();
+				dispatchEvent(new Event("storage"));
+				localStorage.setItem("visited", JSON.stringify(exists));
+			}
+			else {
+				localStorage.setItem("visited", JSON.stringify([]));
+			}
+			console.log(skinName);
+		} 
+		catch (err) {
+			console.warn(err);
+		}
+	}, [currentChara, currentSkin])
+	// if (!currentChara) return ("please wait...");
 	console.time("array.at");
-	let active = currentChara.costumes.length > 1;
-	let bigger = currentChara.costumes.at(currentIndex + 1) ?? currentChara.costumes.at(0);
-	// if (bigger > currentChara.costumes.length - 1) bigger = 0;
-	let smaller = currentChara.costumes.at(currentIndex - 1) ?? currentChara.costumes.at(-1);
-	// if (smaller < 0) smaller = currentChara.costumes.length - 1;currentIndex - 1;
+	let active = allCostumes.length > 1;
+	let bigger = allCostumes.at(currentIndex + 1) ?? allCostumes.at(0);
+	// if (bigger > allCostumes.length - 1) bigger = 0;
+	let smaller = allCostumes.at(currentIndex - 1) ?? allCostumes.at(-1);
+	// if (smaller < 0) smaller = allCostumes.length - 1;currentIndex - 1;
 	console.timeEnd("array.at")
 	// const btnClasses = classNames("galleryBtn", active && "enabled");
 
@@ -32,7 +57,7 @@ function Gallery(props) {
 		<main className="charaPreview">
 			<div className="charaImage">
 				{active ?
-					<Link to={`/costumes/${currentChara._id}/${bigger?._id}`}
+					<Link to={`/costumes/${currentChara._id}/${bigger._id}`}
 						className="galleryBtn enabled"
 					>&lt;
 					</Link>
@@ -44,14 +69,14 @@ function Gallery(props) {
 					alt=""
 				></img>
 				{active ?
-					<Link to={`/costumes/${currentChara._id}/${smaller?._id}`}
+					<Link to={`/costumes/${currentChara._id}/${smaller._id}`}
 						className="galleryBtn enabled" >
 						&gt;
 					</Link>
 					: <div className="galleryBtn">&gt;</div>
 				}
 			</div>
-			<SkinData price={price} event={event}></SkinData>
+			<SkinData price={currentSkin.price} event={currentSkin.event}></SkinData>
 		</main>
 	);
 }

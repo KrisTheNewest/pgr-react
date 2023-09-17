@@ -1,6 +1,7 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
 import NavBar from './NavBar';
+import SkinHistory from './SkinHistory';
 
 import '../App.css';
 
@@ -9,6 +10,7 @@ function Base() {
 		<div className='base autoMargin'>
 			<NavBar />
 			<Outlet></Outlet>
+			<SkinHistory/>
 			<footer className='feet'>
 				<span style={{fontSize: "small"}}>Made by</span>
 				<p>

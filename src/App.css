@@ -2,9 +2,9 @@
   --dark-red: #b80e23;
   --bleak-red: #b15a64;
   --bg-gray: #242424;
-  --btn-gray: #36393f;
+  --navbtn-gray: #36393f;
   --main-gray: #1e1e1e;
-  --pain-gray: #212529;
+  --list-gray: #212529;
 }
 
 .autoMargin {
@@ -29,6 +29,8 @@ body {
   height: 92vh;
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: scroll;
 }
 .charaPreview {
   display: grid;
@@ -60,7 +62,7 @@ body {
   height: 100%;
   background: linear-gradient(
     180deg,
-    var(--btn-gray) calc(100% - 2px),
+    var(--navbtn-gray) calc(100% - 2px),
     var(--dark-red) 2px
   );
 }
@@ -74,13 +76,18 @@ body {
   padding-top: 3px;
   padding-bottom: 3px;
   color: azure;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-color: var(--dark-red);
+  background-color: var(--main-gray);
 }
 
 .btnList {
   all: unset;
   cursor: pointer;
   text-align: center;
-  background-color: var(--btn-gray);
+  background-color: var(--navbtn-gray);
   height: 5vh;
   width: 100%;
   border-bottom: 2px solid var(--dark-red);  
@@ -107,7 +114,7 @@ th, td, .eventaData {
   display: grid;
   grid-template-columns: 10% 45% 45%;
   grid-auto-rows: 100%;
-  background-color:  var(--pain-gray);
+  background-color:  var(--list-gray);
 }
 .priceData {
   /* grid-area: price; */
@@ -191,7 +198,8 @@ th, td, .eventaData {
   padding-top: 0;
   margin-top: 0;
   margin-bottom: 0;
-  height: 100%;
+  /* height: 92vh;
+  overflow: scroll; */
 }
 /* .subListItem {
   all: unset;
@@ -205,11 +213,14 @@ th, td, .eventaData {
   padding-bottom: 3px;
 } */
 .unselected {
-  background-color: var(--pain-gray);
+  background-color: var(--list-gray);
 }
 .selected {
-  background-color: var(--main-gray);
-  color: var(--dark-red);
+  background-color: var(--dark-red);
+  color: black;
+  border-left: 2px solid var(--dark-red);
+  border-bottom: none;
+  font-weight: bold;
 }
 .unselected:hover {
   background-color: var(--dark-red);
@@ -220,16 +231,26 @@ th, td, .eventaData {
 .show > li > .active {
   background-color: var(--bleak-red);
   pointer-events: none;
+  color: black;
+  font-weight: bold;
 }
 .dataBtn {
   all: unset;
   width: 100%;
   text-align: center;
-  transition: background-color 0.5s linear;
+  transition: all 0.5s linear;
   cursor: pointer;
-  background-color:cadetblue;
+  /* background-color:cadetblue; */
+  border: 2px solid var(--dark-red);
 }
-
+.dataBtn:hover {
+  background-color: #b15a64;
+  color: black;
+}
+.selectedData {
+  background-color: #b15a64;
+  color: black;
+}
 .backBtn {
   all: unset;
   text-align: center;
@@ -267,4 +288,13 @@ th, td, .eventaData {
 
 a {
   text-decoration: none;
+}
+
+.history {
+  position: fixed;
+  top: 100px;
+  right: 100px;
+}
+.history > a {
+  color: azure;
 }

@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -27,7 +27,8 @@ function SkinData(props) {
 				{data.map((dataItem, index) =>
 					<button 
 						className={classNames(`dataBtn `, currentData === index && "selectedData")} 
-						 key={index}
+						key={index}
+						onClick={() => setData(index)}
 					>
 						{index}
 					</button>
@@ -67,9 +68,10 @@ function SkinData(props) {
 					</thead>
 					<tbody>
 						<tr>
+							{/* the datas are stupid */}
 							<td>{currentInfo.event.region}</td>
-							<td>{currentInfo.event.start}</td>
-							<td>{currentInfo.event.finish}</td>
+							<td>{new Date(currentInfo.event.start).toDateString()}</td>
+							<td>{new Date(currentInfo.event.finish).toDateString()}</td>
 							<td>{currentInfo.event.rerun}</td>
 							<td>{currentInfo.event.disc}</td>
 						</tr>

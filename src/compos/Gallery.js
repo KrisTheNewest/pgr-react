@@ -12,17 +12,17 @@ function Gallery(props) {
 	const { cost } = useParams();
 	const { payload: currentChara, } = props;
 	const allCostumes = currentChara.costumes;
-	
+
 	const currentIndex = allCostumes.findIndex(c => c._id === cost) ?? 0;
 	const currentSkin = allCostumes[currentIndex];
 
 	useEffect(() => {
 		try {
 			// if (!currentChara) return;
-			let {charaName, _id: charaId } = currentChara;
-			let {_id: skinId , skinName} = currentSkin;
+			const { charaName, _id: charaId } = currentChara;
+			const { _id: skinId, skinName } = currentSkin;
 			if (localStorage.getItem("visited")) {
-				let exists = JSON.parse(localStorage.getItem("visited"))
+				const exists = JSON.parse(localStorage.getItem("visited"))
 					.filter(i => i.skinId !== skinId)
 					.concat({
 						charaId,
@@ -38,19 +38,19 @@ function Gallery(props) {
 				localStorage.setItem("visited", JSON.stringify([]));
 			}
 			console.log(skinName);
-		} 
+		}
 		catch (err) {
 			console.warn(err);
 		}
 	}, [currentChara, currentSkin])
 	// if (!currentChara) return ("please wait...");
-	console.time("array.at");
-	let active = allCostumes.length > 1;
-	let bigger = allCostumes.at(currentIndex + 1) ?? allCostumes.at(0);
+	// console.time("array.at");
+	const active = allCostumes.length > 1;
+	const bigger = allCostumes.at(currentIndex + 1) ?? allCostumes.at(0);
 	// if (bigger > allCostumes.length - 1) bigger = 0;
-	let smaller = allCostumes.at(currentIndex - 1) ?? allCostumes.at(-1);
+	const smaller = allCostumes.at(currentIndex - 1) ?? allCostumes.at(-1);
 	// if (smaller < 0) smaller = allCostumes.length - 1;currentIndex - 1;
-	console.timeEnd("array.at")
+	// console.timeEnd("array.at")
 	// const btnClasses = classNames("galleryBtn", active && "enabled");
 
 	return (

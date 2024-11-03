@@ -3,7 +3,6 @@ import { NavLink, } from "react-router-dom";
 import styled from 'styled-components';
 // import classNames from 'classnames';
 
-import pgrIcon from '../icon.webp';
 import '../App.css';
 
 const PrettyNavLink = styled(NavLink)`
@@ -30,13 +29,13 @@ function NavBar() {
 				</input>
 			</form>
 			<PrettyNavLink to="/costumes">
-						Gallery
+				Gallery
 			</PrettyNavLink>
 			<PrettyNavLink to="/about">
-						About/Legend
+				About/Legend
 			</PrettyNavLink>
 			<PrettyNavLink to="/calendar">
-						Calendar
+				Calendar
 			</PrettyNavLink>
 		</nav>
 	)

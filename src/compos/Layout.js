@@ -1,5 +1,5 @@
 import React from 'react';
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import NavBar from './NavBar';
 import SkinHistory from './SkinHistory';
 
@@ -10,12 +10,12 @@ function Base() {
 		<div className='base autoMargin'>
 			<NavBar />
 			<Outlet></Outlet>
-			<SkinHistory/>
+			<SkinHistory />
 			<footer className='feet'>
-				<span style={{fontSize: "small"}}>Made by</span>
+				<span style={{ fontSize: "small" }}>Made by</span>
 				<p>
-					Krystina<span style={{fontSize: "small"}}> (website and coding)</span><br></br>
-					Senus<span style={{fontSize: "small"}}> (data gathering)</span><br></br>
+					Krystina<span style={{ fontSize: "small" }}> (website and coding)</span><br></br>
+					Senus<span style={{ fontSize: "small" }}> (data gathering)</span><br></br>
 				</p>
 				<p>
 					Powered by React™, Express™ and MongoDB™

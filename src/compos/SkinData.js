@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -8,8 +8,8 @@ function SkinData(props) {
 	const { price, event, } = props;
 	// const currentData = 0;
 	const [currentData, setData] = useState(0);
-	const {cost} = useParams();
-	let data = event.map((e, index, arr) => {
+	const { cost } = useParams();
+	const data = event.map((e, index, arr) => {
 		let temp = {};
 		temp.event = e;
 		temp.price = price[index] ?? price[index - 1] ?? price[0];
@@ -18,15 +18,15 @@ function SkinData(props) {
 	useEffect(() => {
 		setData(0);
 	}, [cost])
-	let currentInfo = data[currentData];
+	const currentInfo = data[currentData];
 	// console.log(currentInfo);
-	if (!currentInfo) return ("please wait...");
+	if (!currentInfo) return ("Please wait...");
 	return (
 		<div className="skinData">
 			<aside className="eventList">
 				{data.map((dataItem, index) =>
-					<button 
-						className={classNames(`dataBtn `, currentData === index && "selectedData")} 
+					<button
+						className={classNames(`dataBtn `, currentData === index && "selectedData")}
 						key={index}
 						onClick={() => setData(index)}
 					>
@@ -79,7 +79,7 @@ function SkinData(props) {
 				</table>
 				<article className="comment prettyScroll">
 					<p>
-					{currentInfo.event.name}?
+						{currentInfo.event.name}?
 					</p>
 				</article>
 			</div>

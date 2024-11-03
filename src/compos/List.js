@@ -7,7 +7,7 @@ function List(props) {
 	const { chara, payload } = props;
 
 	const [openedDropDown, openDD] = useState(chara);
-	if (payload.length === 0) return ("please wait...");
+	if (payload.length === 0) return ("Please wait...");
 
 	return (
 		<aside className="charaList noScroll">
@@ -18,7 +18,7 @@ function List(props) {
 							{_chara.charaName} - {_chara.frameName}
 						</button>
 						<ul className={`charaListFlat ${openedDropDown === _chara._id ? 'show' : 'hide'}`}>
-							{_chara.costumes.map(_costume => 
+							{_chara.costumes.map(_costume =>
 								<li key={_costume._id}>
 									<NavLink to={`/costumes/${_chara._id}/${_costume._id}`} end>
 										{_costume.skinName}

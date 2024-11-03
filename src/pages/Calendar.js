@@ -4,10 +4,9 @@ import '../App.css';
 // import Nav from "../compos/Nav";
 
 function Calendar() {
-
 	return (
 		<main>
-			<p style={{whiteSpace:"break-spaces", fontFamily:"monospace", backgroundColor: "cadetblue", fontSize: "x-large", textAlign: "center"}}>
+			<p style={{ whiteSpace: "break-spaces", fontFamily: "monospace", backgroundColor: "cadetblue", fontSize: "x-large", textAlign: "center" }}>
 			_____________________________<br></br>
 			|Mon|Tue|Wed|Thu|Fri|Sat|Sun|<br></br>
 			|---------------------------|<br></br>

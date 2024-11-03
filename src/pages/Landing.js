@@ -24,7 +24,7 @@ function About() {
 					Expect seasonal coatings event schedule to change from CN event schedule.
 				</p>
 				<img className='bird' src='https://upload.wikimedia.org/wikipedia/commons/3/35/R%C3%A9union_stonechat_%28Saxicola_tectes%29_male.jpg'
-				alt="Réunion stonechat, a grey bird sitting on a branch of a tree"
+					alt="Réunion stonechat, a grey bird sitting on a branch of a tree"
 				></img>
 				<p>
 					<br></br>
